@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | AELORIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #FFF8E2;
+      color: #5E442E;
+      font-family: "Playfair Display", serif;
+    }
+
+    header {
+      background: white;
+      padding: 22px 20px;
+      text-align: center;
+      border-bottom: 1px solid #f1dfb8;
+    }
+
+    .logo {
+      font-family: "Shadows Into Light Two", cursive;
+      font-size: 38px;
+      color: #5E442E;
+      text-decoration: none;
+    }
+
+    .tagline {
+      margin-top: 2px;
+      font-size: 13px;
+      color: #767B39;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 48px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #5E442E;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 25px;
+    }
+
+    .box {
+      background: white;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(94, 68, 46, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .box h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 32px;
+      font-weight: 400;
+      margin-top: 0;
+      color: #5E442E;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #ead8ae;
+      border-radius: 12px;
+      background: #fffdf4;
+      color: #5E442E;
+      font-family: "Playfair Display", serif;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #C85555;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0e4c9;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-weight: 600;
+    }
+
+    .item-note {
+      font-size: 12px;
+      color: #767B39;
+      margin-top: 4px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+    }
+
+    .total-row {
+      border-top: 1px solid #ead8ae;
+      margin-top: 10px;
+      padding-top: 15px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .qr-placeholder {
+      height: 220px;
+      max-width: 220px;
+      margin: 15px auto;
+      border: 3px dashed #767B39;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      background: #fffdf4;
+      color: #767B39;
+      font-size: 14px;
+    }
+
+    .payment-note {
+      background: #FFF8E2;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .warning {
+      background: #fff0ec;
+      border-left: 4px solid #C85555;
+      border-radius: 10px;
+      padding: 13px;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .checkbox-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 18px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 20px;
+      background: #C85555;
+      color: white;
+      font-family: "Playfair Display", serif;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .small-text {
+      font-size: 12px;
+      color: #767B39;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #767B39;
+      font-size: 13px;
+    }
+
+    @media (max-width: 750px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">AELORIA</a>
+  <div class="tagline">its blessing to be Me</div>
+</header>
+
+<div class="container">
+
+  <h1>Checkout</h1>
+
+  <form id="checkoutForm">
+
+    <div class="checkout-grid">
+
+      <!-- CUSTOMER DETAILS -->
+      <div>
+
+        <div class="box">
+          <h2>Your Details</h2>
+
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" required>
+
+          <label for="mobile">Mobile Number *</label>
+          <input type="tel" id="mobile" required>
+
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" required>
+
+          <label for="house">House / Apartment *</label>
+          <input type="text" id="house" required>
+
+          <label for="street">Street / Locality *</label>
+          <input type="text" id="street" required>
+
+          <div class="two-columns">
+
+            <div>
+              <label for="city">City *</label>
+              <input type="text" id="city" required>
+            </div>
+
+            <div>
+              <label for="state">State *</label>
+              <input type="text" id="state" required>
+            </div>
+
+          </div>
+
+          <div class="two-columns">
+
+            <div>
+              <label for="pincode">Pincode *</label>
+              <input type="text" id="pincode" required>
+            </div>
+
+            <div>
+              <label for="country">Country *</label>
+              <input type="text" id="country" value="India" required>
+            </div>
+
+          </div>
+
+          <label for="orderNotes">Order Notes</label>
+          <textarea id="orderNotes" placeholder="Anything you'd like us to know about your order?"></textarea>
+
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="box">
+
+          <h2>UPI Payment</h2>
+
+          <div class="payment-note">
+            <strong>100% prepaid orders</strong><br><br>
+
+            Please scan the AELORIA UPI QR code and complete your payment.
+            After payment, enter your UPI transaction/reference ID below.
+          </div>
+
+          <div class="qr-placeholder">
+            YOUR AELORIA<br>
+            UPI QR CODE<br><br>
+            <small>Temporary placeholder — your real QR will be added later.</small>
+          </div>
+
+          <label for="transactionId">
+            UPI Transaction / Reference ID *
+          </label>
+
+          <input
+            type="text"
+            id="transactionId"
+            placeholder="Enter your UPI transaction ID"
+            required
+          >
+
+          <div class="warning">
+            <strong>Important:</strong><br>
+            Entering a transaction/reference ID does not automatically confirm your payment.
+            AELORIA will manually verify the payment before processing your order.
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="paymentConfirmation" required>
+
+            <span>
+              I have completed the UPI payment and understand that my order will
+              be processed only after payment verification.
+            </span>
+          </label>
+
+          <button type="submit">
+            Submit Order
+          </button>
+
+          <p class="small-text">
+            Shipping: ₹75 within India. Orders are dispatched within
+            7–14 business days. Tracking will be provided after dispatch.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER SUMMARY -->
+      <div>
+
+        <div class="box">
+
+          <h2>Your Order</h2>
+
+          <div id="orderItems"></div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotal">₹0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong>₹75</strong>
+          </div>
+
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="total">₹75</strong>
+          </div>
+
+        </div>
+
+        <div class="box">
+
+          <h2>AELORIA</h2>
+
+          <p class="small-text">
+            Handmade & hand-painted crochet character charms
+            and clay frame charms for your keys and bags.
+          </p>
+
+          <p class="small-text">
+            Every piece is made with care and packed especially
+            for its new home.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
+
+<footer>
+  © AELORIA · its blessing to be Me
+</footer>
+
+
+<script>
+
+  const cart = JSON.parse(localStorage.getItem("aeloriaCart")) || [];
+
+  const orderItems = document.getElementById("orderItems");
+  const subtotalElement = document.getElementById("subtotal");
+  const totalElement = document.getElementById("total");
+
+  const shipping = 75;
+
+  if (cart.length === 0) {
+
+    alert("Your cart is empty.");
+
+    window.location.href = "shop.html";
+
+  }
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+
+    const itemTotal = item.price * item.quantity;
+
+    subtotal += itemTotal;
+
+    const itemElement = document.createElement("div");
+
+    itemElement.className = "order-item";
+
+    itemElement.innerHTML = `
+      <div>
+        <div class="item-name">${item.name}</div>
+
+        <div class="item-note">
+          Quantity: ${item.quantity}
+          ${item.note ? "<br>Note: " + item.note : ""}
+        </div>
+      </div>
+
+      <strong>₹${itemTotal}</strong>
+    `;
+
+    orderItems.appendChild(itemElement);
+
+  });
+
+  const total = subtotal + shipping;
+
+  subtotalElement.textContent = "₹" + subtotal;
+  totalElement.textContent = "₹" + total;
+
+
+  document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const order = {
+
+      orderId: "AEL-" + Date.now(),
+
+      customer: {
+
+        fullName: document.getElementById("fullName").value.trim(),
+
+        mobile: document.getElementById("mobile").value.trim(),
+
+        email: document.getElementById("email").value.trim(),
+
+        house: document.getElementById("house").value.trim(),
+
+        street: document.getElementById("street").value.trim(),
+
+        city: document.getElementById("city").value.trim(),
+
+        state: document.getElementById("state").value.trim(),
+
+        pincode: document.getElementById("pincode").value.trim(),
+
+        country: document.getElementById("country").value.trim(),
+
+        orderNotes: document.getElementById("orderNotes").value.trim()
+
+      },
+
+      items: cart,
+
+      subtotal: subtotal,
+
+      shipping: shipping,
+
+      total: total,
+
+      transactionId: document.getElementById("transactionId").value.trim(),
+
+      paymentStatus: "Pending Verification",
+
+      orderStatus: "Pending Payment",
+
+      createdAt: new Date().toISOString()
+
+    };
+
+    localStorage.setItem(
+      "aeloriaPendingOrder",
+      JSON.stringify(order)
+    );
+
+    window.location.href = "order-success.html";
+
+  });
+
+</script>
+
+</body>
+  </html>
